@@ -1,0 +1,205 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MiniDroneActivity"
+    android:id="@+id/piloting_view"
+    android:background="@drawable/sky"
+    android:keepScreenOn="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Battery: "
+        android:id="@+id/batterytextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:textColor="#ff0000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="XXX%"
+        android:id="@+id/batteryLabel"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/batterytextView"
+        android:layout_marginTop="10dp"
+        android:textColor="#ff0000" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/takeOffOrLandBt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:width="110dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rlKeyboard">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emergency"
+            android:id="@+id/emergencyBt"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="gone"
+            android:width="110dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take picture"
+            android:id="@+id/takePictureBt"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:width="110dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download"
+            android:id="@+id/downloadBt"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:width="110dp"/>
+
+        <RelativeLayout
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="130dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="yaw"
+                android:id="@+id/textView3"
+                android:width="50dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="right"
+                android:id="@+id/yawRightBt"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="left"
+                android:id="@+id/yawLeftBt"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
+
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="up"
+                android:id="@+id/gazUpBt"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:width="110dp"/>
+
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="down"
+                android:id="@+id/gazDownBt"
+                android:width="110dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="130dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="roll"
+                android:id="@+id/textView2"
+                android:width="50dp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="left"
+                android:id="@+id/rollLeftBt"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:width="50dp"/>
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="right"
+                android:id="@+id/rollRightBt"
+                android:width="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="forward"
+                android:id="@+id/forwardBt"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:width="110dp"/>
+
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="back"
+                android:id="@+id/backBt"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:width="110dp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/rlKeyboard">
+
+        <include layout="@layout/our_input"/>
+    </LinearLayout>
+
+</RelativeLayout>

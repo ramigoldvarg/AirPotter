@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/letterTextView"
+        android:hint="הקלד אות לתעופה"
+        android:imeOptions="actionSend"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"/>
+<!--
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/sendText"/>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="On"
+            android:id="@+id/lightsOnBt"
+            android:layout_alignLeft="@id/sendText"/>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Off"
+            android:id="@+id/lightsOffBt"
+            android:layout_alignLeft="@id/lightsOnBt"/>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="XO"
+            android:id="@+id/lightPartyBt"
+            android:layout_alignBottom="@id/lightsOffBt"
+            android:layout_alignLeft="@id/lightsOffBt"/>
+    </LinearLayout>
+-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layoutDirection="ltr">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="'"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendChupchik"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ק"
+            android:id="@+id/sendKuf"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ר"
+            android:id="@+id/sendReish"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="א"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendAlef"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ט"
+            android:id="@+id/sendTet"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ו"
+            android:id="@+id/sendVav"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ן"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendNuns"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ם"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendMems"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="פ"
+            android:id="@+id/sendPey"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layoutDirection="ltr">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ש"
+            android:id="@+id/sendShin"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ד"
+            android:id="@+id/sendDaled"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ג"
+            android:id="@+id/sendGimel"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="כ"
+            android:id="@+id/sendKaf"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ע"
+            android:id="@+id/sendAin"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="י"
+            android:id="@+id/sendYud"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ח"
+            android:id="@+id/sendHet"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ל"
+            android:id="@+id/sendLamed"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ך"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendKafs"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ף"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendPeys"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layoutDirection="ltr">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ז"
+            android:id="@+id/sendZain"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ס"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendSameh"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ב"
+            android:id="@+id/sendBet"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ה"
+            android:id="@+id/sendHey"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="נ"
+            android:id="@+id/sendNun"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="מ"
+            android:id="@+id/sendMem"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="צ"
+            android:id="@+id/sendTzadik"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ת"
+            android:id="@+id/sendTaf"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ץ"
+            android:textColor="@color/no_input"
+            android:id="@+id/sendTzadikss"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layoutDirection="rtl">
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="רווח"
+            android:id="@+id/sendSpace"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="תובל"
+            android:id="@+id/sendToval"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch_the_lights"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+
+    <!-- Toval -->
+    <!--<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ל"
+            android:id="@+id/sendLamed"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ב"
+            android:id="@+id/sendBet"
+            android:layout_alignLeft="@id/sendLamed"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ו"
+            android:id="@+id/sendVav"
+            android:layout_alignLeft="@id/sendBet"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="ת"
+            android:id="@+id/sendTaf"
+            android:layout_alignBottom="@id/sendVav"
+            android:layout_alignLeft="@id/sendVav"/>
+
+    </LinearLayout>
+-->
+</LinearLayout>
