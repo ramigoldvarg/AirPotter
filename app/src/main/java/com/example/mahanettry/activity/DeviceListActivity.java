@@ -74,34 +74,11 @@ public class DeviceListActivity extends AppCompatActivity {
                 ARDiscoveryDeviceService service = (ARDiscoveryDeviceService)mAdapter.getItem(position);
                 ARDISCOVERY_PRODUCT_ENUM product = ARDiscoveryService.getProductFromProductID(service.getProductID());
                 switch (product) {
-                    case ARDISCOVERY_PRODUCT_ARDRONE:
-                    case ARDISCOVERY_PRODUCT_BEBOP_2:
-                        intent = new Intent(DeviceListActivity.this, BebopActivity.class);
-                        break;
-
-                    case ARDISCOVERY_PRODUCT_SKYCONTROLLER:
-                        intent = new Intent(DeviceListActivity.this, SkyControllerActivity.class);
-                        break;
-
-                    case ARDISCOVERY_PRODUCT_SKYCONTROLLER_2:
-                    case ARDISCOVERY_PRODUCT_SKYCONTROLLER_NG:
-                        intent = new Intent(DeviceListActivity.this, SkyController2Activity.class);
-                        break;
-
-                    case ARDISCOVERY_PRODUCT_JS:
-                    case ARDISCOVERY_PRODUCT_JS_EVO_LIGHT:
-                    case ARDISCOVERY_PRODUCT_JS_EVO_RACE:
-                        intent = new Intent(DeviceListActivity.this, JSActivity.class);
-                        break;
-
                     case ARDISCOVERY_PRODUCT_MINIDRONE:
                     case ARDISCOVERY_PRODUCT_MINIDRONE_EVO_BRICK:
                     case ARDISCOVERY_PRODUCT_MINIDRONE_EVO_LIGHT:
                     case ARDISCOVERY_PRODUCT_MINIDRONE_DELOS3:
                         intent = new Intent(DeviceListActivity.this, MiniDroneActivity.class);
-                        break;
-                    case ARDISCOVERY_PRODUCT_MINIDRONE_WINGX:
-                        intent = new Intent(DeviceListActivity.this, SwingDroneActivity.class);
                         break;
 
                     default:
@@ -118,6 +95,8 @@ public class DeviceListActivity extends AppCompatActivity {
         mDroneDiscoverer = new DroneDiscoverer(this);
 
         Set<String> permissionsToRequest = new HashSet<>();
+
+        // Require permissions
         for (String permission : PERMISSIONS_NEEDED) {
             if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
@@ -222,10 +201,12 @@ public class DeviceListActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent)
         {
             View rowView = convertView;
-            // reuse views
+
+            // Reuse views
             if (rowView == null) {
                 LayoutInflater inflater = getLayoutInflater();
                 rowView = inflater.inflate(android.R.layout.simple_list_item_1, null);
+
                 // configure view holder
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.text = (TextView) rowView.findViewById(android.R.id.text1);
