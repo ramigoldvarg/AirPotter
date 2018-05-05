@@ -8,7 +8,9 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
-
+    <color name="white">#ffffff</color>
+    <color name="bg_gradient_start">#31244e</color>
+    <color name="bg_gradient_end">#6b394c</color>
     <color name="selected_tab_color">#AAAAAA</color>
     <color name="unselected_tab_color">#CCCCCC</color>
 
