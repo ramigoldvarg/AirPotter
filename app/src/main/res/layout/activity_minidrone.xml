@@ -1,79 +1,85 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/piloting_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MiniDroneActivity"
-    android:id="@+id/piloting_view"
-    android:background="@drawable/sky"
-    android:keepScreenOn="true">
+    android:layout_centerInParent="true"
+    android:keepScreenOn="true"
+    tools:context=".activity.MiniDroneActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@drawable/background" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Battery: "
         android:id="@+id/batterytextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="10dp"
-        android:textColor="#ff0000"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="XXX%"
-        android:id="@+id/batteryLabel"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/batterytextView"
+        android:layout_margin="10dp"
+        android:text="Battery: "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ff0000" />
+
+    <TextView
+        android:id="@+id/batteryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/batterytextView"
+        android:text="XXX%"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ff0000" />
 
     <Button
+        android:id="@+id/takeOffOrLandBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/takeOffOrLandBt"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
-        android:width="110dp"/>
+        android:width="110dp" />
 
     <RelativeLayout
+        android:id="@+id/rlKeyboard"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/rlKeyboard">
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Emergency"
             android:id="@+id/emergencyBt"
-            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:visibility="gone"
-            android:width="110dp"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Take picture"
-            android:id="@+id/takePictureBt"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"
-            android:width="110dp"/>
+            android:width="110dp"
+            android:text="Emergency"
+            android:visibility="gone" />
 
         <Button
+            android:id="@+id/takePictureBt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Download"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:width="110dp"
+            android:text="Take picture"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/downloadBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:visibility="gone"
-            android:width="110dp"/>
+            android:width="110dp"
+            android:text="Download"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:layout_width="400dp"
@@ -81,125 +87,136 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true">
 
-        <RelativeLayout
-            android:layout_width="180dp"
-            android:layout_height="130dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
+            <RelativeLayout
+                android:layout_width="180dp"
+                android:layout_height="130dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="yaw"
-                android:id="@+id/textView3"
-                android:width="50dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:width="50dp"
+                    android:gravity="center_horizontal"
+                    android:text="yaw"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="right"
-                android:id="@+id/yawRightBt"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+                <Button
+                    android:id="@+id/yawRightBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/gazUpBt"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_right"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
 
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="left"
-                android:id="@+id/yawLeftBt"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"/>
+                <Button
+                    android:id="@+id/yawLeftBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignBaseline="@+id/yawRightBt"
+                    android:layout_alignBottom="@+id/yawRightBt"
+                    android:layout_toStartOf="@+id/gazUpBt"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_left"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
 
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="up"
-                android:id="@+id/gazUpBt"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:width="110dp"/>
+                <Button
+                    android:id="@+id/gazUpBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_up"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
 
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="down"
-                android:id="@+id/gazDownBt"
-                android:width="110dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"/>
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/gazDownBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_down"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="180dp"
-            android:layout_height="130dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="roll"
-                android:id="@+id/textView2"
-                android:width="50dp"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="left"
-                android:id="@+id/rollLeftBt"
-                android:layout_centerVertical="true"
+            <RelativeLayout
+                android:layout_width="180dp"
+                android:layout_height="130dp"
                 android:layout_alignParentLeft="true"
-                android:width="50dp"/>
+                android:layout_centerVertical="true">
 
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="right"
-                android:id="@+id/rollRightBt"
-                android:width="20dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:width="50dp"
+                    android:gravity="center_horizontal"
+                    android:text="roll"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="forward"
-                android:id="@+id/forwardBt"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:width="110dp"/>
+                <Button
+                    android:id="@+id/rollLeftBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/forwardBt"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_left"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
 
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="back"
-                android:id="@+id/backBt"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:width="110dp"/>
+                <Button
+                    android:id="@+id/rollRightBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignTop="@+id/rollLeftBt"
+                    android:layout_toEndOf="@+id/forwardBt"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_right"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
+
+                <Button
+                    android:id="@+id/forwardBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_up"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
+
+                <Button
+                    android:id="@+id/backBt"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/rounded_btn"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_down"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp" />
             </RelativeLayout>
 
         </RelativeLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignBottom="@+id/rlKeyboard">
-
-        <include layout="@layout/our_input"/>
-    </LinearLayout>
 
 </RelativeLayout>
