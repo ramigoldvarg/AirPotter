@@ -7,16 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.widget.Button;;
 import android.widget.ImageButton;
-import android.widget.Switch;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,18 +23,11 @@ import com.example.mahanettry.drone.Spells;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR_ENUM;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
-import com.parrot.arsdk.arcontroller.ARCONTROLLER_ERROR_ENUM;
-import com.parrot.arsdk.arcontroller.ARControllerCodec;
-import com.parrot.arsdk.arcontroller.ARDeviceController;
-import com.parrot.arsdk.arcontroller.ARDeviceControllerStreamListener;
-import com.parrot.arsdk.arcontroller.ARFrame;
 import com.parrot.arsdk.ardiscovery.ARDiscoveryDeviceService;
 import com.example.mahanettry.R;
 import com.example.mahanettry.drone.MiniDrone;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import at.grabner.circleprogress.CircleProgressView;
 
@@ -51,7 +40,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private TextView txtSpeechInput;
-    private ImageButton btnSpeak;
+    private ImageView btnSpeak;
 
     private ProgressDialog mConnectionProgressDialog;
     private ProgressDialog mDownloadProgressDialog;
@@ -106,7 +95,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
         mMiniDrone.addListener(mMiniDroneListener);
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
-        btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+        btnSpeak = (ImageView) findViewById(R.id.btnSpeak);
         btnSpeak.setOnClickListener(new View.OnClickListener() {
 
             @Override
