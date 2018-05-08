@@ -21,9 +21,17 @@ import com.erz.joysticklibrary.JoyStick;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR_ENUM;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
+import com.parrot.arsdk.arcontroller.ARCONTROLLER_ERROR_ENUM;
+import com.parrot.arsdk.arcontroller.ARControllerCodec;
+import com.parrot.arsdk.arcontroller.ARDeviceController;
+import com.parrot.arsdk.arcontroller.ARDeviceControllerStreamListener;
+import com.parrot.arsdk.arcontroller.ARFrame;
 import com.parrot.arsdk.ardiscovery.ARDiscoveryDeviceService;
 import com.example.mahanettry.R;
 import com.example.mahanettry.drone.MiniDrone;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import at.grabner.circleprogress.CircleProgressView;
 
@@ -159,7 +167,6 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
         });
 
         mBatteryView = (CircleProgressView) findViewById(R.id.batteryView);
-        mBatteryView.setBarColor(Color.RED,Color.GREEN);
         mBatteryView.setTextColor(Color.parseColor("#00cfc6"));
     }
 
@@ -230,7 +237,15 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
         @Override
         public void onBatteryChargeChanged(int batteryPercentage) {
-            mBatteryView.setText(String.format("%d%%", batteryPercentage));
+            if (batteryPercentage > 60) {
+                mBatteryView.setBarColor(Color.parseColor("#26EE99"));
+            } else if (batteryPercentage > 30) {
+                mBatteryView.setBarColor(Color.parseColor("#fef65b"));
+            } else {
+                mBatteryView.setBarColor(Color.parseColor("#e60000"));
+            }
+
+            mBatteryView.setValue(batteryPercentage);
         }
 
         @Override

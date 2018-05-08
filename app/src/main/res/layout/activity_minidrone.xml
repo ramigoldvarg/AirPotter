@@ -34,8 +34,7 @@
         CircleProgressView:cpv_unit="%"
         CircleProgressView:cpv_unitColor="@color/primary_light"
         CircleProgressView:cpv_unitPosition="right_top"
-        CircleProgressView:cpv_unitScale="1"
-        CircleProgressView:cpv_value="10" />
+        CircleProgressView:cpv_unitScale="1" />
 
     <Button
         android:id="@+id/takeOffOrLandBt"
@@ -119,6 +118,7 @@
                 android:text="Roll"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </RelativeLayout>
+
 
         <ImageView
             android:layout_width="48dp"
