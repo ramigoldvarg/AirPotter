@@ -36,6 +36,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     private Button mTakeOffLandBt;
     private Button mDownloadBt;
     private JoyStick rollJoystick;
+    private JoyStick yawJoystick;
 
     private int mNbMaxDownload;
     private int mCurrentDownloadIndex;
@@ -125,6 +126,9 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
         rollJoystick = (JoyStick) findViewById(R.id.rollJoystick);
         rollJoystick.setListener(this);
+
+        yawJoystick = (JoyStick) findViewById(R.id.yawJoystick);
+        yawJoystick.setListener(this);
 
         findViewById(R.id.takePictureBt).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
