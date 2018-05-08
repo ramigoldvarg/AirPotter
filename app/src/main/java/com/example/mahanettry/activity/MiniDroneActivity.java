@@ -6,10 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -260,6 +259,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
         mBatteryLabel = (TextView) findViewById(R.id.batteryLabel);
     }
 
+    //region Drone Joystick Movement
     @Override
     public void onMove(JoyStick joyStick, double angle, double power, int direction) {
         int posX = -(int) (Math.cos(angle) * power);
@@ -296,6 +296,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     public void yawXAxis(int value) {
         mMiniDrone.setYaw((byte) value);
     }
+    //endregion
 
     @Override
     public void onTap() {}
@@ -332,13 +333,13 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
         public void onPilotingStateChanged(ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM state) {
             switch (state) {
                 case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED:
-                    mTakeOffLandBt.setText("Take off");
+                    mTakeOffLandBt.setBackgroundResource(R.drawable.ic_flight_takeoff);
                     mTakeOffLandBt.setEnabled(true);
                     mDownloadBt.setEnabled(true);
                     break;
                 case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING:
                 case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_HOVERING:
-                    mTakeOffLandBt.setText("Land");
+                    mTakeOffLandBt.setBackgroundResource(R.drawable.ic_flight_land);
                     mTakeOffLandBt.setEnabled(true);
                     mDownloadBt.setEnabled(false);
                     break;
