@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/piloting_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,179 +45,85 @@
         android:layout_marginRight="10dp"
         android:width="110dp" />
 
-    <RelativeLayout
-        android:id="@+id/rlKeyboard"
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true">
+    <Button
+        android:id="@+id/emergencyBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="110dp"
+        android:text="Emergency"
+        android:visibility="visible"
+        android:layout_below="@+id/takeOffOrLandBt"
+        android:layout_alignStart="@+id/takeOffOrLandBt" />
 
-        <Button
-            android:id="@+id/emergencyBt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:width="110dp"
-            android:text="Emergency"
-            android:visibility="gone" />
+    <Button
+        android:id="@+id/takePictureBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:width="110dp"
+        android:text="Take picture"
+        android:visibility="gone" />
 
-        <Button
-            android:id="@+id/takePictureBt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:width="110dp"
-            android:text="Take picture"
-            android:visibility="gone" />
+    <Button
+        android:id="@+id/downloadBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:width="110dp"
+        android:text="Download"
+        android:visibility="gone" />
 
-        <Button
-            android:id="@+id/downloadBt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:width="110dp"
-            android:text="Download"
-            android:visibility="gone" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="400dp"
+            android:id="@+id/rollLayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
+            android:layout_weight="0.5">
 
-            <RelativeLayout
-                android:layout_width="180dp"
-                android:layout_height="130dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true">
+            <com.erz.joysticklibrary.JoyStick
+                android:id="@+id/rollJoystick"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:buttonColor="#2ccbdc"
+                app:padColor="#e9f9fb" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:width="50dp"
-                    android:gravity="center_horizontal"
-                    android:text="yaw"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <Button
-                    android:id="@+id/yawRightBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/gazUpBt"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_right"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-
-                <Button
-                    android:id="@+id/yawLeftBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignBaseline="@+id/yawRightBt"
-                    android:layout_alignBottom="@+id/yawRightBt"
-                    android:layout_toStartOf="@+id/gazUpBt"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_left"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-
-                <Button
-                    android:id="@+id/gazUpBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_up"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-
-                <Button
-                    android:id="@+id/gazDownBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_down"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="180dp"
-                android:layout_height="130dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:width="50dp"
-                    android:gravity="center_horizontal"
-                    android:text="roll"
-                    android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <Button
-                    android:id="@+id/rollLeftBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/forwardBt"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_left"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-
-                <Button
-                    android:id="@+id/rollRightBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignTop="@+id/rollLeftBt"
-                    android:layout_toEndOf="@+id/forwardBt"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_right"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-
-                <Button
-                    android:id="@+id/forwardBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_up"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-
-                <Button
-                    android:id="@+id/backBt"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/rounded_btn"
-                    android:drawableStart="@drawable/ic_keyboard_arrow_down"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp" />
-            </RelativeLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rollJoystick"
+                android:layout_centerInParent="true"
+                android:text="Roll"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
         </RelativeLayout>
-    </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <com.erz.joysticklibrary.JoyStick
+                android:id="@+id/yawJoystick"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:buttonColor="#2ccbdc"
+                app:padColor="#e9f9fb" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/yawJoystick"
+                android:layout_centerInParent="true"
+                android:text="Yaw"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
