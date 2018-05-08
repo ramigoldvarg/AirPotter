@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.erz.joysticklibrary.JoyStick;
 import com.example.mahanettry.drone.DroneDecorator;
+import com.example.mahanettry.drone.SpellReader;
+import com.example.mahanettry.drone.Spells;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR_ENUM;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
@@ -36,7 +38,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     private MiniDrone mMiniDrone;
     private DroneDecorator spellDrone;
 
-    private HashMap<String, int[]> spells;
+    private Spells spells;
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private TextView txtSpeechInput;
@@ -61,29 +63,31 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
         initIHM();
 
-        spells = new HashMap<String, int[]>();
 
-        int accio[] = {0, 0, 0, -50};
-        spells.put("accio", accio);
-        spells.put("ikea", accio);
-
-        int obliviate[] = {0, 0, 0, 50};
-        spells.put("obliviate", obliviate);
-
-        int lumos[] = {0, 0, 50, 0};
-        spells.put("lumos", lumos);
-
-        int sectumspmera[] = {0,0,-50,0};
-        spells.put("sectumsempra", sectumspmera);
-
-        int alohomora[] = {0, 50, 0, 0};
-        spells.put("alohomora", alohomora);
-
-        int expecto[] = {0, -50, 0, 0};
-        spells.put("expecto", expecto);
-
-        int ridikulus[] = {50, 0, 0, 0};
-        spells.put("ridiculous", ridikulus);
+        this.spells = new Spells(new SpellReader(R.raw.spells, this));
+//
+//
+//        int accio[] = {0, 0, 0, -50};
+//        spells.put("accio", accio);
+//        spells.put("ikea", accio);
+//
+//        int obliviate[] = {0, 0, 0, 50};
+//        spells.put("obliviate", obliviate);
+//
+//        int lumos[] = {0, 0, 50, 0};
+//        spells.put("lumos", lumos);
+//
+//        int sectumspmera[] = {0,0,-50,0};
+//        spells.put("sectumsempra", sectumspmera);
+//
+//        int alohomora[] = {0, 50, 0, 0};
+//        spells.put("alohomora", alohomora);
+//
+//        int expecto[] = {0, -50, 0, 0};
+//        spells.put("expecto", expecto);
+//
+//        int ridikulus[] = {50, 0, 0, 0};
+//        spells.put("ridiculous", ridikulus);
 
         Intent intent = getIntent();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(DeviceListActivity.EXTRA_DEVICE_SERVICE);
@@ -137,15 +141,18 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                    if (result.get(0).toLowerCase().equals("wingardium leviosa")) {
+                    if (result.get(0).toLowerCase().equals(spells.getTakeOffSpell())) {
                         spellDrone.takeoff();
-                    } else if(result.get(0).toLowerCase().equals("avada kedavra")) {
+                    } else if(result.get(0).toLowerCase().equals(spells.getLandSpell())) {
                         spellDrone.land();
-                    }else if (spells.containsKey(result.get(0).toLowerCase())) {
-                        spellDrone.startNewMovement(spells.get(result.get(0).toLowerCase()));
-                    } else {
-                        Toast.makeText(this, result.get(0), Toast.LENGTH_LONG).show();
-                        // txtSpeechInput.setText(result.get(0));
+                    }  else {
+                        try {
+                            spellDrone.startNewMovement(spells.getSpell(result.get(0).toLowerCase()));
+                        } catch (Exception ex) {
+                            Toast.makeText(getApplicationContext(),
+                                    result.get(0),
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
                 break;

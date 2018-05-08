@@ -1,0 +1,20 @@
+wingardium leviosa
+avada kedavra
+lumos
+0 0 50 0
+obliviate
+0 0 0 50
+sectumsempra
+0 0 -50 0
+accio
+0 0 0 -50
+ikea
+0 0 0 -50
+alohomora
+0 50 0 0
+expecto
+0 -50 0 0
+ridikulus
+50 0 0 0
+END
+explliarmus
