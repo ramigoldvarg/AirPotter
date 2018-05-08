@@ -537,45 +537,4 @@ public class MiniDrone {
         mDeviceController.getFeatureMiniDrone().setPilotingPCMDFlag((byte) 1);
 
     }
-
-    public void drawHet(boolean bTurnOffLight) throws java.lang.InterruptedException {
-        start();
-        lightsOn();
-
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDGaz((byte) 100);
-        Thread.sleep(500);
-
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDGaz((byte) 0);
-        Thread.sleep(100);
-
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDRoll((byte) 100);
-        Thread.sleep(400);
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDRoll((byte) -100);
-        Thread.sleep(300);
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDRoll((byte) 0);
-        Thread.sleep(200);
-
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDGaz((byte) -100);
-        Thread.sleep(500);
-
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDGaz((byte) 0);
-        Thread.sleep(100);
-
-        if (bTurnOffLight) {
-            lightsOff();
-        }
-    }
-
-    public void drawTaf() throws java.lang.InterruptedException {
-        drawHet(false);
-
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDRoll((byte) 100);
-        Thread.sleep(400);
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDRoll((byte) -100);
-        Thread.sleep(300);
-        mDeviceController.getFeatureMiniDrone().setPilotingPCMDRoll((byte) 0);
-        Thread.sleep(100);
-
-        lightsOff();
-    }
 }

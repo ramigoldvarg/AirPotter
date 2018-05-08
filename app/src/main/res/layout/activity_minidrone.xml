@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/piloting_view"
     android:layout_width="match_parent"
@@ -23,27 +24,28 @@
         android:layout_height="match_parent"
         android:src="@drawable/drone_background" />
 
-    <TextView
-        android:id="@+id/batterytextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <at.grabner.circleprogress.CircleProgressView
+        android:id="@+id/batteryView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="10dp"
-        android:text="Battery: "
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#ff0000" />
-
-    <TextView
-        android:id="@+id/batteryLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/batterytextView"
-        android:text="XXX%"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#ff0000" />
+        android:layout_marginLeft="10dp"
+        CircleProgressView:cpv_autoTextSize="true"
+        CircleProgressView:cpv_barColor="@color/primary"
+        CircleProgressView:cpv_barWidth="10dp"
+        CircleProgressView:cpv_innerContourSize="0dp"
+        CircleProgressView:cpv_maxValue="100"
+        CircleProgressView:cpv_outerContourSize="0dp"
+        CircleProgressView:cpv_rimColor="@color/primary_light"
+        CircleProgressView:cpv_rimWidth="10dp"
+        CircleProgressView:cpv_seekMode="true"
+        CircleProgressView:cpv_showUnit="true"
+        CircleProgressView:cpv_textScale="1"
+        CircleProgressView:cpv_unit="%"
+        CircleProgressView:cpv_unitColor="@color/primary_light"
+        CircleProgressView:cpv_unitPosition="right_top"
+        CircleProgressView:cpv_unitScale="1" />
 
     <Button
         android:id="@+id/takeOffOrLandBt"
@@ -51,7 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:width="110dp" />
 
     <Button
@@ -99,6 +102,9 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_below="@id/centerOfScreen"
+        android:weightSum="1"
+        android:showDividers="middle"
+        android:divider="@drawable/divider"
         android:id="@+id/linearLayout">
     <!--android:showDividers="middle"-->
     <!--android:divider="@drawable/divider"-->
@@ -126,6 +132,13 @@
                 android:text="Roll"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/rounded_lightning" />
 
         <RelativeLayout
             android:layout_width="match_parent"
