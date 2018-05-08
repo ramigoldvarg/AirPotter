@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class DeviceListActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PERMISSIONS_REQUEST = 1;
 
     public DroneDiscoverer mDroneDiscoverer;
+    public ProgressBar loadingDevices;
 
     private final List<ARDiscoveryDeviceService> mDronesList = new ArrayList<>();
 
@@ -93,6 +95,8 @@ public class DeviceListActivity extends AppCompatActivity {
         });
 
         mDroneDiscoverer = new DroneDiscoverer(this);
+        loadingDevices = (ProgressBar) findViewById(R.id.loadingDevices);
+        loadingDevices.setVisibility(View.VISIBLE);
 
         Set<String> permissionsToRequest = new HashSet<>();
 
@@ -166,6 +170,12 @@ public class DeviceListActivity extends AppCompatActivity {
 
         @Override
         public void onDronesListUpdated(List<ARDiscoveryDeviceService> dronesList) {
+            if (dronesList.size() == 0) {
+                loadingDevices.setVisibility(View.VISIBLE);
+            } else {
+                loadingDevices.setVisibility(View.INVISIBLE);
+            }
+
             mDronesList.clear();
             mDronesList.addAll(dronesList);
 

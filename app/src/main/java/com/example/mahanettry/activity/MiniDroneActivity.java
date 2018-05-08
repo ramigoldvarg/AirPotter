@@ -3,6 +3,7 @@ package com.example.mahanettry.activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,8 @@ import com.parrot.arsdk.ardiscovery.ARDiscoveryDeviceService;
 import com.example.mahanettry.R;
 import com.example.mahanettry.drone.MiniDrone;
 
+import at.grabner.circleprogress.CircleProgressView;
+
 public class MiniDroneActivity extends AppCompatActivity implements JoyStick.JoyStickListener {
     private static final String TAG = "MiniDroneActivity";
     private MiniDrone mMiniDrone;
@@ -31,7 +34,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     private ProgressDialog mConnectionProgressDialog;
     private ProgressDialog mDownloadProgressDialog;
 
-    private TextView mBatteryLabel;
+    private CircleProgressView mBatteryView;
     private Button mTakeOffLandBt;
     private Button mDownloadBt;
     private JoyStick rollJoystick;
@@ -155,7 +158,9 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
             }
         });
 
-        mBatteryLabel = (TextView) findViewById(R.id.batteryLabel);
+        mBatteryView = (CircleProgressView) findViewById(R.id.batteryView);
+        mBatteryView.setBarColor(Color.RED,Color.GREEN);
+        mBatteryView.setTextColor(Color.parseColor("#00cfc6"));
     }
 
     //region Drone Joystick Movement
@@ -225,7 +230,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
         @Override
         public void onBatteryChargeChanged(int batteryPercentage) {
-            mBatteryLabel.setText(String.format("%d%%", batteryPercentage));
+            mBatteryView.setText(String.format("%d%%", batteryPercentage));
         }
 
         @Override
