@@ -8,6 +8,17 @@
     android:keepScreenOn="true"
     tools:context=".activity.MiniDroneActivity">
 
+    <TextView
+        android:id="@+id/txtSpeechInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        android:textStyle="normal" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,7 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
 
         <RelativeLayout
             android:id="@+id/rollLayout"
@@ -125,5 +137,14 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnSpeak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp"
+        android:src="@drawable/ico_mic" />
 
 </RelativeLayout>

@@ -1,9 +1,11 @@
 package com.example.mahanettry.activity;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,11 +15,13 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erz.joysticklibrary.JoyStick;
+import com.example.mahanettry.drone.DroneDecorator;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR_ENUM;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
@@ -25,9 +29,19 @@ import com.parrot.arsdk.ardiscovery.ARDiscoveryDeviceService;
 import com.example.mahanettry.R;
 import com.example.mahanettry.drone.MiniDrone;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class MiniDroneActivity extends AppCompatActivity implements JoyStick.JoyStickListener {
     private static final String TAG = "MiniDroneActivity";
     private MiniDrone mMiniDrone;
+    private DroneDecorator spellDrone;
+
+    private HashMap<String, int[]> spells;
+
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    private TextView txtSpeechInput;
+    private ImageButton btnSpeak;
 
     private ProgressDialog mConnectionProgressDialog;
     private ProgressDialog mDownloadProgressDialog;
@@ -48,12 +62,99 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
         initIHM();
 
+        spells = new HashMap<String, int[]>();
+
+        int accio[] = {0, 0, 0, -50};
+        spells.put("accio", accio);
+        spells.put("ikea", accio);
+
+        int obliviate[] = {0, 0, 0, 50};
+        spells.put("obliviate", obliviate);
+
+        int lumos[] = {0, 0, 50, 0};
+        spells.put("lumos", lumos);
+
+        int sectumspmera[] = {0,0,-50,0};
+        spells.put("sectumsempra", sectumspmera);
+
+        int alohomora[] = {0, 50, 0, 0};
+        spells.put("alohomora", alohomora);
+
+        int expecto[] = {0, -50, 0, 0};
+        spells.put("expecto", expecto);
+
+        int ridikulus[] = {50, 0, 0, 0};
+        spells.put("ridiculous", ridikulus);
+
         Intent intent = getIntent();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(DeviceListActivity.EXTRA_DEVICE_SERVICE);
         mMiniDrone = new MiniDrone(this, service);
+        spellDrone = new DroneDecorator(mMiniDrone);
+
         mMiniDrone.addListener(mMiniDroneListener);
 
+        txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+        btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+        btnSpeak.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                promptSpeechInput();
+            }
+        });
     }
+
+    /**
+     * Showing google speech input dialog
+     * */
+    private void promptSpeechInput() {
+        spellDrone.stopCurrentMove();
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.speech_not_supported),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Receiving speech input
+     * */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    txtSpeechInput.setText("");
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    if (result.get(0).toLowerCase().equals("wingardium leviosa")) {
+                        spellDrone.takeoff();
+                    } else if(result.get(0).toLowerCase().equals("avada kedavra")) {
+                        spellDrone.land();
+                    }else if (spells.containsKey(result.get(0).toLowerCase())) {
+                        spellDrone.startNewMovement(spells.get(result.get(0).toLowerCase()));
+                    } else {
+                        Toast.makeText(this, result.get(0), Toast.LENGTH_LONG).show();
+                        // txtSpeechInput.setText(result.get(0));
+                    }
+                }
+                break;
+            }
+
+        }
+    }
+
 
     @Override
     protected void onStart() {
