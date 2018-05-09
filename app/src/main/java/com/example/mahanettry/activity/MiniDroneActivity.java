@@ -58,6 +58,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minidrone);
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
         initIHM();
 

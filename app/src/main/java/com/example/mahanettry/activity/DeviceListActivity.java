@@ -61,6 +61,8 @@ public class DeviceListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
+
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         final ListView listView = (ListView) findViewById(R.id.list);
 
         // Assign adapter to ListView

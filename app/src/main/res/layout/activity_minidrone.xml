@@ -37,7 +37,7 @@
         CircleProgressView:cpv_innerContourSize="0dp"
         CircleProgressView:cpv_maxValue="100"
         CircleProgressView:cpv_outerContourSize="0dp"
-        CircleProgressView:cpv_rimColor="@color/primary_light"
+        CircleProgressView:cpv_rimColor="@color/bar_color"
         CircleProgressView:cpv_rimWidth="10dp"
         CircleProgressView:cpv_seekMode="true"
         CircleProgressView:cpv_showUnit="true"
