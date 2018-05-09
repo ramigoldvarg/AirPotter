@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;;
@@ -64,29 +66,6 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
 
         this.spells = new Spells(new SpellReader(R.raw.spells, this));
-//
-//
-//        int accio[] = {0, 0, 0, -50};
-//        spells.put("accio", accio);
-//        spells.put("ikea", accio);
-//
-//        int obliviate[] = {0, 0, 0, 50};
-//        spells.put("obliviate", obliviate);
-//
-//        int lumos[] = {0, 0, 50, 0};
-//        spells.put("lumos", lumos);
-//
-//        int sectumspmera[] = {0,0,-50,0};
-//        spells.put("sectumsempra", sectumspmera);
-//
-//        int alohomora[] = {0, 50, 0, 0};
-//        spells.put("alohomora", alohomora);
-//
-//        int expecto[] = {0, -50, 0, 0};
-//        spells.put("expecto", expecto);
-//
-//        int ridikulus[] = {50, 0, 0, 0};
-//        spells.put("ridiculous", ridikulus);
 
         Intent intent = getIntent();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(DeviceListActivity.EXTRA_DEVICE_SERVICE);

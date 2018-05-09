@@ -8,7 +8,8 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
-        <item name="logo">@drawable/lightninh</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
 
@@ -18,14 +19,4 @@
         <item name="android:background">@color/primary_light</item>
         <!--<item name="android:buttonStyle">@style/CKButton</item>-->
     </style>
-<!--
-    <style name="CKButton" parent="@android:style/Widget.Button">
-        <item name="android:background">@color/button_color</item>
-    </style>
--->
-    <!--
-    <style name="Button" parent="@style/BaseButton">
-        <item name="colorAccent">@color/button_color</item>
-    </style>
-    -->
 </resources>
