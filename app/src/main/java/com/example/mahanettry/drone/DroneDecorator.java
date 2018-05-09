@@ -16,7 +16,6 @@ public class DroneDecorator {
     }
 
     public void stopCurrentMove() {
-        // TODO: Save state
         this.roll = 0;
         this.yaw = 0;
         this.gaz = 0;
@@ -51,5 +50,19 @@ public class DroneDecorator {
 
     public void land() {
         drone.land();
+    }
+
+    public void preformTrack(Movement[] track) {
+        for(int index = 0; index < track.length; index++) {
+            this.startNewMovement(track[index].getDirection());
+
+            try {
+                Thread.sleep(track[index].getMovementTime());
+                this.stopCurrentMove();
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.test.mock.MockContentProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 
 import com.erz.joysticklibrary.JoyStick;
 import com.example.mahanettry.drone.DroneDecorator;
+import com.example.mahanettry.drone.Movement;
+import com.example.mahanettry.drone.MovementRecorder;
 import com.example.mahanettry.drone.SpellReader;
 import com.example.mahanettry.drone.Spells;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR_ENUM;
@@ -30,6 +33,7 @@ import com.example.mahanettry.R;
 import com.example.mahanettry.drone.MiniDrone;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import at.grabner.circleprogress.CircleProgressView;
 
@@ -39,6 +43,8 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     private DroneDecorator spellDrone;
 
     private Spells spells;
+    MovementRecorder mvRecorder;
+    Movement currMovement;
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private TextView txtSpeechInput;
@@ -53,6 +59,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
     private JoyStick rollJoystick;
     private JoyStick yawJoystick;
 
+
     private int mNbMaxDownload;
     private int mCurrentDownloadIndex;
 
@@ -66,6 +73,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
 
         this.spells = new Spells(new SpellReader(R.raw.spells, this));
+        mvRecorder = new MovementRecorder();
 
         Intent intent = getIntent();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(DeviceListActivity.EXTRA_DEVICE_SERVICE);
@@ -90,6 +98,12 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
      * */
     private void promptSpeechInput() {
         spellDrone.stopCurrentMove();
+
+        if (currMovement != null) {
+            currMovement.setEndTime((new Date()).getTime());
+            mvRecorder.addMovement(currMovement);
+        }
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -123,8 +137,13 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
                         spellDrone.takeoff();
                     } else if(result.get(0).toLowerCase().equals(spells.getLandSpell())) {
                         spellDrone.land();
-                    }  else {
+                    } else if (result.get(0).toLowerCase().equals(spells.getRetraceSpell())) {
+                        spellDrone.preformTrack(mvRecorder.retraceTrack());
+                        mvRecorder.reset();
+                    } else {
                         try {
+                            currMovement = new Movement(new Date().getTime(), spells.getSpell(result.get(0).toLowerCase()));
+
                             spellDrone.startNewMovement(spells.getSpell(result.get(0).toLowerCase()));
                         } catch (Exception ex) {
                             Toast.makeText(getApplicationContext(),
