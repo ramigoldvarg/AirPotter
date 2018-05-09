@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR_ENUM;
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM;
+import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_STATE_ENUM;
+import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_USBACCESSORY_GUNCONTROL_ACTION_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DICTIONARY_KEY_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_ERROR_ENUM;
@@ -31,6 +33,7 @@ import com.parrot.arsdk.arutils.ARUtilsException;
 import com.parrot.arsdk.arutils.ARUtilsManager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -110,9 +113,9 @@ public class MiniDrone {
     private String mCurrentRunId;
     private ARDISCOVERY_PRODUCT_ENUM mProductType;
     private ARDiscoveryDeviceService mDeviceService;
-
     private ARUtilsManager mFtpListManager;
     private ARUtilsManager mFtpQueueManager;
+    private byte gunID;
 
     public MiniDrone(Context context, @NonNull ARDiscoveryDeviceService deviceService) {
 
@@ -236,6 +239,12 @@ public class MiniDrone {
             } else {
                 mDeviceController.getFeatureMiniDrone().sendMediaRecordPictureV2();
             }
+        }
+    }
+
+    public void shoot() {
+        if ((mDeviceController != null) && (mState.equals(ARCONTROLLER_DEVICE_STATE_ENUM.ARCONTROLLER_DEVICE_STATE_RUNNING))) {
+            mDeviceController.getFeatureMiniDrone().sendUsbAccessoryGunControl(gunID, ARCOMMANDS_MINIDRONE_USBACCESSORY_GUNCONTROL_ACTION_ENUM.ARCOMMANDS_MINIDRONE_USBACCESSORY_GUNCONTROL_ACTION_FIRE);
         }
     }
 
@@ -515,6 +524,19 @@ public class MiniDrone {
                             mCurrentRunId = runID;
                         }
                     });
+                }
+            }
+            else if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE){
+                if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+                    Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+                    while (itr.hasNext()) {
+                        ARControllerArgumentDictionary<Object> args = itr.next();
+                        if (args != null) {
+                            byte id = (byte)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_ID)).intValue();
+                            ARCOMMANDS_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_STATE_ENUM state = ARCOMMANDS_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_STATE));
+                            gunID = id;
+                        }
+                    }
                 }
             }
         }

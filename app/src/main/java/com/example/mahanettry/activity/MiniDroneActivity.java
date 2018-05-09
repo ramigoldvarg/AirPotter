@@ -54,7 +54,6 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
     private CircleProgressView mBatteryView;
     private Button mTakeOffLandBt;
-    private Button mDownloadBt;
     private JoyStick rollJoystick;
     private JoyStick yawJoystick;
 
@@ -226,26 +225,6 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
             }
         });
 
-        mDownloadBt = (Button)findViewById(R.id.downloadBt);
-        mDownloadBt.setEnabled(false);
-        mDownloadBt.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mMiniDrone.getLastFlightMedias();
-
-                mDownloadProgressDialog = new ProgressDialog(MiniDroneActivity.this, R.style.AppCompatAlertDialogStyle);
-                mDownloadProgressDialog.setIndeterminate(true);
-                mDownloadProgressDialog.setMessage("Fetching medias");
-                mDownloadProgressDialog.setCancelable(false);
-                mDownloadProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mMiniDrone.cancelGetLastFlightMedias();
-                    }
-                });
-                mDownloadProgressDialog.show();
-            }
-        });
-
         mBatteryView = (CircleProgressView) findViewById(R.id.batteryView);
         mBatteryView.setTextColor(Color.parseColor("#00cfc6"));
     }
@@ -334,17 +313,17 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
                 case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED:
                     mTakeOffLandBt.setBackgroundResource(R.drawable.ic_flight_takeoff);
                     mTakeOffLandBt.setEnabled(true);
-                    mDownloadBt.setEnabled(true);
+
                     break;
                 case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING:
                 case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_HOVERING:
                     mTakeOffLandBt.setBackgroundResource(R.drawable.ic_flight_land);
                     mTakeOffLandBt.setEnabled(true);
-                    mDownloadBt.setEnabled(false);
+
                     break;
                 default:
                     mTakeOffLandBt.setEnabled(false);
-                    mDownloadBt.setEnabled(false);
+
             }
         }
 
