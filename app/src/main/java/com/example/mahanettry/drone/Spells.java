@@ -10,11 +10,13 @@ public class Spells {
     private HashMap<String, int[]> spells;
     private String land;
     private String takeoff;
+    private String retrace;
 
     public Spells(Readable rd) {
         this.spells = new HashMap<String, int[]>();
         this.takeoff = "wingardium leviosa";
         this.land = "avada kedavra";
+        this.retrace = "back to the future";
 
         int accio[] = {0, 0, 0, -50};
         this.spells.put("accio", accio);
@@ -65,6 +67,10 @@ public class Spells {
 
     public String getLandSpell() {
         return this.land;
+    }
+
+    public String getRetraceSpell() {
+        return this.retrace;
     }
 
     public int[] getSpell(String spellName) throws Exception {
