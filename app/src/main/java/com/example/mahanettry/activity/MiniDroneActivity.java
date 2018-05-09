@@ -8,10 +8,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.test.mock.MockContentProvider;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;;
 import android.widget.ImageButton;
@@ -409,4 +414,34 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
             }
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_info:
+                LayoutInflater inflater = getLayoutInflater();
+                View dialoglayout = inflater.inflate(R.layout.instructions, null);
+                dialoglayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setView(dialoglayout);
+                builder.setTitle("Instructions");
+                builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
