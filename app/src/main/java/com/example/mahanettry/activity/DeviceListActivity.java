@@ -61,6 +61,8 @@ public class DeviceListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
+
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         final ListView listView = (ListView) findViewById(R.id.list);
 
         // Assign adapter to ListView
@@ -216,6 +218,7 @@ public class DeviceListActivity extends AppCompatActivity {
             if (rowView == null) {
                 LayoutInflater inflater = getLayoutInflater();
                 rowView = inflater.inflate(android.R.layout.simple_list_item_1, null);
+                rowView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
                 // configure view holder
                 ViewHolder viewHolder = new ViewHolder();

@@ -37,7 +37,7 @@
         CircleProgressView:cpv_innerContourSize="0dp"
         CircleProgressView:cpv_maxValue="100"
         CircleProgressView:cpv_outerContourSize="0dp"
-        CircleProgressView:cpv_rimColor="@color/primary_light"
+        CircleProgressView:cpv_rimColor="@color/bar_color"
         CircleProgressView:cpv_rimWidth="10dp"
         CircleProgressView:cpv_seekMode="true"
         CircleProgressView:cpv_showUnit="true"
@@ -133,12 +133,13 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </RelativeLayout>
 
-
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="150dp"
-            android:src="@drawable/rounded_lightning" />
+            android:id="@+id/btnSpeak"
+            android:src="@drawable/rounded_lightning"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -163,14 +164,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/btnSpeak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp"
-        android:src="@drawable/ico_mic" />
 
 </RelativeLayout>
