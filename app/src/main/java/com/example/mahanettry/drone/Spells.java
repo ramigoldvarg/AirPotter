@@ -12,28 +12,51 @@ public class Spells {
     private String takeoff;
 
     public Spells(Readable rd) {
-        spells = new HashMap<String, int[]>();
-        String currLine = new String();
+        this.spells = new HashMap<String, int[]>();
+        this.takeoff = "wingardium leviosa";
+        this.land = "avada kedavra";
 
-        try {
-            rd.readLine(land);
-            rd.readLine(takeoff);
+        int accio[] = {0, 0, 0, -50};
+        this.spells.put("accio", accio);
+        this.spells.put("ikea", accio);
 
-            while (rd.readLine(currLine) && !currLine.equals("END")) {
-                String movements = new String();
-                if(rd.readLine(movements)) {
-                    String[] movementsAfterSplit = movements.split(" ");
-                    int movementsValues[] = new int[movementsAfterSplit.length];
-                    for(int index = 0; index < movementsAfterSplit.length; index++) {
-                        movementsValues[index] = Integer.parseInt(movementsAfterSplit[index]);
-                    }
+        int obliviate[] = {0, 0, 0, 50};
+        this.spells.put("obliviate", obliviate);
 
-                    spells.put(currLine, movementsValues);
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        int lumos[] = {0, 0, 50, 0};
+        this.spells.put("lumos", lumos);
+
+        int sectumspmera[] = {0,0,-50,0};
+        this.spells.put("sectumsempra", sectumspmera);
+
+        int alohomora[] = {0, 50, 0, 0};
+        this.spells.put("alohomora", alohomora);
+
+        int expecto[] = {0, -50, 0, 0};
+        this.spells.put("expecto", expecto);
+
+        int ridikulus[] = {50, 0, 0, 0};
+        this.spells.put("ridiculous", ridikulus);
+
+//        try {
+//            rd.readLine(land);
+//            rd.readLine(takeoff);
+//
+//            while (rd.readLine(currLine) && !currLine.equals("END")) {
+//                String movements = new String();
+//                if(rd.readLine(movements)) {
+//                    String[] movementsAfterSplit = movements.split(" ");
+//                    int movementsValues[] = new int[movementsAfterSplit.length];
+//                    for(int index = 0; index < movementsAfterSplit.length; index++) {
+//                        movementsValues[index] = Integer.parseInt(movementsAfterSplit[index]);
+//                    }
+//
+//                    spells.put(currLine, movementsValues);
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     public String getTakeOffSpell() {
@@ -45,8 +68,8 @@ public class Spells {
     }
 
     public int[] getSpell(String spellName) throws Exception {
-        if(spells.containsKey(spellName)) {
-            return spells.get(spellName);
+        if(this.spells.containsKey(spellName)) {
+            return this.spells.get(spellName);
         } else {
             throw new Exception("Spell name not found");
         }
