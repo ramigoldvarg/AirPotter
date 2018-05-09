@@ -11,12 +11,14 @@ public class Spells {
     private String land;
     private String takeoff;
     private String retrace;
+    private String shoot;
 
     public Spells(Readable rd) {
         this.spells = new HashMap<String, int[]>();
         this.takeoff = "wingardium leviosa";
         this.land = "avada kedavra";
         this.retrace = "back to the future";
+        this.shoot = "expelliarmus";
 
         int accio[] = {0, 0, 0, -50};
         this.spells.put("accio", accio);
@@ -79,5 +81,9 @@ public class Spells {
         } else {
             throw new Exception("Spell name not found");
         }
+    }
+
+    public String getShoot() {
+        return this.shoot;
     }
 }

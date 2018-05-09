@@ -105,6 +105,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
 
         if (currMovement != null) {
             currMovement.setEndTime((new Date()).getTime());
+            txtSpeechInput.setText("");
             mvRecorder.addMovement(currMovement);
         }
 
@@ -140,10 +141,13 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
                     if (result.get(0).toLowerCase().equals(spells.getTakeOffSpell())) {
                         spellDrone.takeoff();
                     } else if(result.get(0).toLowerCase().equals(spells.getLandSpell())) {
+                        mvRecorder.reset();
                         spellDrone.land();
                     } else if (result.get(0).toLowerCase().equals(spells.getRetraceSpell())) {
                         spellDrone.preformTrack(mvRecorder.retraceTrack());
                         mvRecorder.reset();
+                    } else if (result.get(0).toLowerCase().equals(spells.getShoot())) {
+                        mMiniDrone.shoot();
                     } else {
                         try {
                             currMovement = new Movement(new Date().getTime(), spells.getSpell(result.get(0).toLowerCase()));
@@ -226,6 +230,7 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
                     case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING:
                     case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_HOVERING:
                         mMiniDrone.land();
+                        mvRecorder.reset();
                         break;
                     default:
                 }

@@ -58,8 +58,8 @@ public class DroneDecorator {
 
             try {
                 Thread.sleep(track[index].getMovementTime());
-                this.stopCurrentMove();
-                Thread.sleep(2000);
+//                this.stopCurrentMove();
+//                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
