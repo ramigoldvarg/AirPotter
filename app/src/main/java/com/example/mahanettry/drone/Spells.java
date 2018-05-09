@@ -12,6 +12,7 @@ public class Spells {
     private String takeoff;
     private String retrace;
     private String shoot;
+    private String dance;
 
     public Spells(Readable rd) {
         this.spells = new HashMap<String, int[]>();
@@ -19,6 +20,7 @@ public class Spells {
         this.land = "avada kedavra";
         this.retrace = "back to the future";
         this.shoot = "expelliarmus";
+        this.dance = "dance";
 
         int accio[] = {0, 0, 0, -50};
         this.spells.put("accio", accio);
@@ -85,5 +87,9 @@ public class Spells {
 
     public String getShoot() {
         return this.shoot;
+    }
+
+    public String getDance() {
+        return this.dance;
     }
 }

@@ -148,6 +148,8 @@ public class MiniDroneActivity extends AppCompatActivity implements JoyStick.Joy
                         mvRecorder.reset();
                     } else if (result.get(0).toLowerCase().equals(spells.getShoot())) {
                         mMiniDrone.shoot();
+                    } else if (result.get(0).toLowerCase().equals(spells.getDance())) {
+                        mMiniDrone.flip();
                     } else {
                         try {
                             currMovement = new Movement(new Date().getTime(), spells.getSpell(result.get(0).toLowerCase()));
